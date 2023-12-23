@@ -45,6 +45,7 @@ const DaftarBelumSelesai = () => {
           khatamanList={belumSelesaiList}
           onSelesai={handleSelesai}
           onBatalSelesai={handleBatalSelesai}
+          showProgress={false}
         />
       ) : (
         <p className="text-gray-500 text-center m-4">Daftar Kosong</p>

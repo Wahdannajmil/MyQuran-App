@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import KhatamanList from "../components/KhatamanList";
+import ProgressBar from "../components/ProgressBar";
 
 const Home = () => {
   const [khatamanList, setKhatamanList] = useState([]);
@@ -54,8 +55,13 @@ const Home = () => {
       });
   };
 
+  const jumlahSelesai = khatamanList.filter((khataman) => khataman.selesai).length;
+  const totalKhataman = khatamanList.length;
+  const completionPercentage = (jumlahSelesai / totalKhataman) * 100;
+
   return (
     <div>
+      <ProgressBar completionPercentage={completionPercentage} />
       <KhatamanList
         khatamanList={khatamanList}
         onSelesai={handleSelesai}
