@@ -1,13 +1,37 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 const FormInput = ({ onTambahKhataman }) => {
   const [nama, setNama] = useState("");
   const [juz, setJuz] = useState("");
 
-  const handleTambahKhataman = () => {
-    onTambahKhataman({ nama, juz });
-    setNama("");
-    setJuz("");
+  const handleTambahKhataman = async () => {
+    const data = {
+      nama: nama,
+      juz: juz,
+    };
+
+    try {
+      const response = await axios.post(
+        "https://6445e9fcee791e1e29f332a7.mockapi.io/api/v1/login-register/user",
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (response.status === 201) {
+        setNama("");
+        setJuz("");
+        onTambahKhataman(response.data);
+      } else {
+        console.error("Failed to add data to the API");
+      }
+    } catch (error) {
+      console.error("Error while making the API request", error);
+    }
   };
 
   return (

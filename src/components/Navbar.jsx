@@ -20,7 +20,7 @@ const NavBar = () => {
               Semua
             </NavLink>
           </li>
-          <li>
+          {/* <li>
             <NavLink
               to={"/daftar-belum-selesai"}
               className={`text-white hover:text-gray-300 px-3 py-2 rounded transition duration-300 ease-in-out ${
@@ -29,7 +29,7 @@ const NavBar = () => {
             >
               Belum Selesai
             </NavLink>
-          </li>
+          </li> */}
           <li>
             <NavLink
               to={"/daftar-selesai"}

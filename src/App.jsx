@@ -1,4 +1,3 @@
-// src/App.jsx
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Home from "./pages/Home";
@@ -16,6 +15,7 @@ const App = () => {
       <Router>
         <Nav/>
         <KhatamanIntentions />
+        <FormInput/>
         <NavBar />
         <Routes>
           <Route path="/" element={<Home />} />
