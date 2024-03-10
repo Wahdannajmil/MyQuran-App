@@ -7,10 +7,10 @@ import logoImage from "../assets/logoalquran.png";
 
 const Header = () => {
   return (
-    <nav className="header p-4 fixed top-0 w-full font-poppins" style={{ backgroundColor: "#ff4d6d" }}>
+    <nav className="header p-4 fixed top-0 w-full font-poppins bg-gradient-to-r from-pink-500 to-purple-500">
       <div className="header mx-auto flex justify-between items-center">
-        <div className="text-white font-bold text-lg">
-          <img src={logoImage} alt="Logo" className="h-10 w-auto" />
+        <div className="text-white font-bold text-lg flex items-center">
+          <img src={logoImage} alt="Logo" className="h-10 w-auto mr-2" />
         </div>
         <div className="lg:hidden">
           <button id="menu-toggle" className="text-white focus:outline-none">

@@ -1,46 +1,73 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart, faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
-import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
+import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
+import { faHeart as faHeartSolid, faCheckCircle } from "@fortawesome/free-solid-svg-icons";
+import Swal from "sweetalert2";
 import "typeface-poppins";
 
 import "../App.css";
 
 const KhatamanList = ({ khatamanList, onSelesai, onBatalSelesai }) => {
-  const handleSelesai = (id) => {
+  // Fungsi untuk mengurutkan khataman berdasarkan juz dari angka kecil ke besar
+  const sortedKhatamanList = khatamanList.sort((a, b) => a.juz - b.juz);
+
+  const handleSelesai = (id, nama) => {
     onSelesai(id);
-    alert(`Khataman ${khatamanList.find((khataman) => khataman.id === id).nama} Selesai!`);
+    Swal.fire({
+      icon: "success",
+      title: "Khataman Selesai!",
+      text: `Khataman ${nama} Selesai!`,
+      timerProgressBar: true,
+      timer: 3000,
+      willClose: () => {
+        // Do something when modal closes
+      }
+    });
   };
 
-  const handleBatalSelesai = (id) => {
+  const handleBatalSelesai = (id, nama) => {
     onBatalSelesai(id);
-    alert(`Batal Selesai Khataman ${khatamanList.find((khataman) => khataman.id === id).nama}`);
+    Swal.fire({
+      icon: "info",
+      title: "Batal Selesai",
+      text: `Batal Selesai Khataman ${nama}`,
+      timerProgressBar: true,
+      timer: 3000,
+      willClose: () => {
+        // Do something when modal closes
+      }
+    });
   };
 
   return (
     <div className="container mx-auto my-8 max-w-md">
-      {khatamanList.length > 0 ? (
+      {sortedKhatamanList.length > 0 ? (
         <ul className="w-full max-w-md">
-          {khatamanList.map((khataman) => (
-            <li key={khataman.id} className="bg-white border border-gray-300 rounded-lg p-4 m-4 shadow-md font-poppins">
-              <div className="flex justify-between items-center text-white">
-                <div className="text-lg text-black">
+          {sortedKhatamanList.map((khataman) => (
+            <li key={khataman.id} className={`bg-white border border-gray-300 rounded-lg p-4 m-4 shadow-md font-poppins ${khataman.selesai ? 'bg-green-100' : ''}`}>
+              <div className="flex justify-between items-center text-black">
+                <div className="text-lg">
                   Juz {khataman.juz} - {khataman.nama}
+                  {khataman.selesai && (
+                    <span className="ml-2 text-green-500">
+                      <FontAwesomeIcon icon={faCheckCircle} /> Selesai
+                    </span>
+                  )}
                 </div>
                 <div>
                   {!khataman.selesai ? (
                     <button
-                      className="text-white text-2xl font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline"
+                      className="text-2xl font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline"
                       style={{ color: "#ff4d6d" }}
-                      onClick={() => handleSelesai(khataman.id)}
+                      onClick={() => handleSelesai(khataman.id, khataman.nama)}
                     >
                       <FontAwesomeIcon icon={faHeartRegular} />
                     </button>
                   ) : (
                     <button
-                      className="text-white text-2xl font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline"
+                      className="text-2xl font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline"
                       style={{ color: "#ff4d6d" }}
-                      onClick={() => handleBatalSelesai(khataman.id)}
+                      onClick={() => handleBatalSelesai(khataman.id, khataman.nama)}
                     >
                       <FontAwesomeIcon icon={faHeartSolid} />
                     </button>
