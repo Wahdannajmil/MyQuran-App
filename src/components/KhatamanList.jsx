@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
 import { faHeart as faHeartSolid, faCheckCircle } from "@fortawesome/free-solid-svg-icons";
@@ -9,7 +9,14 @@ import "typeface-poppins";
 import "../App.css";
 
 const KhatamanList = ({ khatamanList, onSelesai, onBatalSelesai }) => {
+  const [sortedKhatamanList, setSortedKhatamanList] = useState([]);
   const [editedKhataman, setEditedKhataman] = useState({ id: null, nama: "", juz: "" });
+
+  useEffect(() => {
+    // Urutkan daftar khataman berdasarkan juz terkecil
+    const sortedList = [...khatamanList].sort((a, b) => a.juz - b.juz);
+    setSortedKhatamanList(sortedList);
+  }, [khatamanList]);
 
   const handleEdit = (khataman) => {
     setEditedKhataman({ id: khataman.id, nama: khataman.nama, juz: khataman.juz });
@@ -75,9 +82,9 @@ const KhatamanList = ({ khatamanList, onSelesai, onBatalSelesai }) => {
 
   return (
     <div className="container mx-auto my-8 max-w-md">
-      {khatamanList.length > 0 ? (
+      {sortedKhatamanList.length > 0 ? (
         <ul className="w-full max-w-md">
-          {khatamanList.map((khataman) => (
+          {sortedKhatamanList.map((khataman) => (
             <li
               key={khataman.id}
               className={`bg-white border border-gray-300 rounded-lg p-4 m-4 shadow-md font-poppins ${
@@ -111,13 +118,6 @@ const KhatamanList = ({ khatamanList, onSelesai, onBatalSelesai }) => {
                       <FontAwesomeIcon icon={faHeartSolid} />
                     </button>
                   )}
-                  {/* <button
-                    className="text-2xl font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline ml-2"
-                    style={{ color: "#1E40AF" }}
-                    onClick={() => handleEdit(khataman)}
-                  >
-                    ✏️
-                  </button> */}
                 </div>
               </div>
             </li>
@@ -127,7 +127,6 @@ const KhatamanList = ({ khatamanList, onSelesai, onBatalSelesai }) => {
         <p className="text-gray-500 text-center m-4">Daftar khataman kosong.</p>
       )}
 
-      {/* Edit Form */}
       {editedKhataman.id && (
         <div className="fixed bottom-0 left-0 right-0 bg-white p-4 shadow-md">
           <div className="flex items-center justify-between">
