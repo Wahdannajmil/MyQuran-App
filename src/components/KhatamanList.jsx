@@ -94,11 +94,6 @@ const KhatamanList = ({ khatamanList, onSelesai, onBatalSelesai }) => {
               <div className="flex justify-between items-center text-black">
                 <div className="text-lg">
                   Juz {khataman.juz} - {khataman.nama}
-                  {khataman.selesai && (
-                    <span className="ml-2 text-green-500">
-                      <FontAwesomeIcon icon={faCheckCircle} />
-                    </span>
-                  )}
                 </div>
                 <div>
                   {!khataman.selesai ? (
