@@ -87,8 +87,8 @@ const KhatamanList = ({ khatamanList, onSelesai, onBatalSelesai }) => {
           {sortedKhatamanList.map((khataman) => (
             <li
               key={khataman.id}
-              className={`bg-white border border-gray-300 rounded-lg p-4 m-4 shadow-md font-poppins ${
-                khataman.selesai ? 'bg-green-100' : ''
+              className={`border border-gray-300 rounded-lg p-4 m-4 shadow-md font-poppins transition-colors duration-300 ${
+                khataman.selesai ? "bg-green-100 border-green-400" : "bg-white"
               }`}
             >
               <div className="flex justify-between items-center text-black">
@@ -96,7 +96,7 @@ const KhatamanList = ({ khatamanList, onSelesai, onBatalSelesai }) => {
                   Juz {khataman.juz} - {khataman.nama}
                   {khataman.selesai && (
                     <span className="ml-2 text-green-500">
-                      <FontAwesomeIcon icon={faCheckCircle} /> Selesai
+                      <FontAwesomeIcon icon={faCheckCircle} />
                     </span>
                   )}
                 </div>
