@@ -80,15 +80,17 @@ const KhatamanList = ({ khatamanList, onSelesai, onBatalSelesai }) => {
     });
   };
 
-    const sendWhatsAppMessage = () => {
-    const selesaiCount = sortedKhatamanList.filter(khataman => khataman.selesai).length;
-    const belumSelesaiCount = sortedKhatamanList.length - selesaiCount;
+const sendWhatsAppMessage = () => {
+  const selesaiCount = sortedKhatamanList.filter(khataman => khataman.selesai).length;
+  const belumSelesaiCount = sortedKhatamanList.length - selesaiCount;
 
-    const message = `Jumlah juz yang sudah dibaca: ${selesaiCount}\nJumlah juz yang belum dibaca: ${belumSelesaiCount}\nDikutip dari website`;
+  const message = `Jumlah juz yang sudah dibaca: ${selesaiCount}\nJumlah juz yang belum dibaca: ${belumSelesaiCount}\nDikutip dari website`;
 
-    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, "_blank");
-  };
+  const whatsappUrl = `whatsapp://send?text=${encodeURIComponent(message)}`;
+  window.location.href = whatsappUrl;
+};
+
+
 
   return (
     <div className="container mx-auto my-8 max-w-md">
