@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
-import { faHeart as faHeartSolid, faCheckCircle } from "@fortawesome/free-solid-svg-icons";
+import { faHeart as faHeartSolid, faShareAlt } from "@fortawesome/free-solid-svg-icons";
 import Swal from "sweetalert2";
 import axios from "axios";
 import "typeface-poppins";
@@ -80,8 +80,27 @@ const KhatamanList = ({ khatamanList, onSelesai, onBatalSelesai }) => {
     });
   };
 
+    const sendWhatsAppMessage = () => {
+    const selesaiCount = sortedKhatamanList.filter(khataman => khataman.selesai).length;
+    const belumSelesaiCount = sortedKhatamanList.length - selesaiCount;
+
+    const message = `Jumlah juz yang sudah dibaca: ${selesaiCount}\nJumlah juz yang belum dibaca: ${belumSelesaiCount}\nDikutip dari website`;
+
+    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, "_blank");
+  };
+
   return (
     <div className="container mx-auto my-8 max-w-md">
+      <div className="flex justify-end m-5">
+        <button
+          onClick={sendWhatsAppMessage}
+          className="bg-gradient-to-r from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 text-white font-bold py-2 px-4 rounded-full shadow-lg transform transition-transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-green-300 flex items-center justify-center"
+        >
+          <FontAwesomeIcon icon={faShareAlt} className="mr-2" />
+          Kirim ke WhatsApp
+        </button>
+      </div>
       {sortedKhatamanList.length > 0 ? (
         <ul className="w-full max-w-md">
           {sortedKhatamanList.map((khataman) => (

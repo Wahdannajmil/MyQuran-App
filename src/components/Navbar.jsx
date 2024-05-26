@@ -13,11 +13,11 @@ const NavBar = () => {
             <NavLink
               exact
               to={"/"}
-              className={`text-white hover:text-gray-300 px-3 py-2 rounded transition duration-300 ease-in-out ${
-                location.pathname === "/" ? "border-b-2 border-white" : ""
+              className={`text-white text-xl hover:text-gray-300 px-3 py-2 rounded transition duration-300 ease-in-out ${
+                location.pathname === "/" ? "border-b-2 border-gray-800" : ""
               }`}
             >
-              Semua
+              Daftar Khataman
             </NavLink>
           </li>
           {/* <li>
@@ -30,7 +30,7 @@ const NavBar = () => {
               Belum Selesai
             </NavLink>
           </li> */}
-          <li>
+          {/* <li>
             <NavLink
               to={"/daftar-selesai"}
               className={`text-white hover:text-gray-300 px-3 py-2 rounded transition duration-300 ease-in-out ${
@@ -39,7 +39,7 @@ const NavBar = () => {
             >
               Selesai
             </NavLink>
-          </li>
+          </li> */}
         </ul>
       </div>
     </nav>
