@@ -15,7 +15,7 @@ const App = () => {
       <Router>
         <Nav/>
         <KhatamanIntentions />
-        {/* <FormInput/> */}
+        <FormInput/>
         <NavBar />  
         <Routes>
           <Route path="/" element={<Home />} />
