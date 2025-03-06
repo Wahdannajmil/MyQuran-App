@@ -36,7 +36,9 @@ const KhatamanIntentions = () => {
           "Totok Sudarto",
           "Siti Fatimah",
           "H Banawi",
-          "Rohmadi"
+          "Rohmadi",
+          "Mbah Zaekah",
+          "Mbah Suldi Sk"
         ].map((item, index) => (
           <li key={index} className="mb-2">
             <span className="text-red-500">&#8226;</span> {item}
