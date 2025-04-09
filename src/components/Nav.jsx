@@ -48,7 +48,7 @@ const Header = () => {
             className={`text-xl font-bold ${scrolled ? 'text-[#ff4d6d]' : 'text-white'}`}
             aria-label="Khataman ke"
           >
-            Khataman ke <FontAwesomeIcon icon={faHashtag} className={`text-xl ${scrolled ? 'text-[#ff4d6d]' : 'text-white'}`} /> 12
+            Khataman ke <FontAwesomeIcon icon={faHashtag} className={`text-xl ${scrolled ? 'text-[#ff4d6d]' : 'text-white'}`} /> 13
           </span>
           {/* <span
             className={`text-sm ${scrolled ? 'text-[#ff4d6d]' : 'text-white'}`}
